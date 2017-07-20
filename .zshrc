@@ -121,3 +121,8 @@ fi
 if [ -f $HOME/.functions ]; then
 	. $HOME/.functions
 fi
+
+# Load docker aliases
+if [ -f $HOME/.docker_functions ]; then
+	. $HOME/.docker_functions
+fi

@@ -16,3 +16,8 @@ man() {
 tre() {
 	tree -L 1 $@
 }
+
+# Removes all exited containers
+drm() {
+	docker rm $(docker ps -aq -f status=exited)
+}
