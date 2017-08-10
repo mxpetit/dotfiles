@@ -13,11 +13,29 @@ subld() {
 	# Get parent directory if $1 is a file since workdir cannot be a file
 	local workdir=$([ -f $absolute_path ] && echo "$(dirname $absolute_path)" || echo "$absolute_path")
 
-	docker run \
+	docker run -d \
 		-w $workdir \
 		-v $absolute_path:$absolute_path \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		-e DISPLAY=$DISPLAY \
 		-e LANG=en_US.UTF-8 \
 		-e NEWUSER=$USER sublime:3
+}
+
+vim() {
+	if  ! [[ -d $1 || -f $1 ]]; then
+		(>&2 echo "\"$1\" is not an existing file / directory.")
+		return 1
+	fi
+
+	# Get real path since docker cannot mount non-absolute path
+	local absolute_path="$(realpath $1)"
+
+	# Get parent directory if $1 is a file since workdir cannot be a file
+	local workdir=$([ -f $absolute_path ] && echo "$(dirname $absolute_path)" || echo "$absolute_path")
+
+	docker run -it --rm \
+		-w $workdir \
+		-v $absolute_path:$absolute_path \
+		vim $absolute_path
 }
