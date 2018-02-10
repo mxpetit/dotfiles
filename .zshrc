@@ -84,7 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export JAVA_HOME=/usr/local/jdk1.8.0_101
+export JAVA_HOME=/usr/local/java/jdk1.8.0_151
 export GOPATH=$HOME/workspace
 export GOBIN=$GOPATH/bin
 export GOROOT=/usr/local/go
@@ -114,15 +114,15 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 tmux attach &> /dev/null
 
 if [[ ! $TERM =~ screen ]]; then
-	exec tmux
+    exec tmux
 fi
 
 # Load aliases
 if [ -f $HOME/.functions ]; then
-	. $HOME/.functions
+    . $HOME/.functions
 fi
 
 # Load docker aliases
 if [ -f $HOME/.docker_functions ]; then
-	. $HOME/.docker_functions
+    . $HOME/.docker_functions
 fi
