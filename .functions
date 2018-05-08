@@ -17,3 +17,8 @@ man() {
 drm() {
     docker rm $(docker ps -aq -f status=exited)
 }
+
+# Removes all untagged images
+drmi() {
+    docker rmi $(docker images --filter "dangling=true" -q)
+}
