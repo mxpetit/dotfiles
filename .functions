@@ -22,3 +22,17 @@ drm() {
 drmi() {
     docker rmi $(docker images --filter "dangling=true" -q)
 }
+
+# Scans <nmap_IP_pattern> and display hostname.
+# example: hosts '192.168.1.*'
+hosts() {
+    if [ $# -eq 0 ]
+    then
+        echo "Usage: hosts <nmap_IP_pattern>"
+        return 1
+    fi
+
+    for i in  $(nmap -n -sn $1 -oG - | awk '/Up$/{print $2}'); do
+        host $i
+    done
+}
