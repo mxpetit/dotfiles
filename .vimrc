@@ -1,3 +1,9 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Plugins directory
 call plug#begin('$HOME/.vim/plugged')
 
@@ -35,3 +41,25 @@ set autochdir
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menuone
+
+" Automatically reread changed files without asking
+set autoread
+
+set noswapfile
+set nobackup
+set nowritebackup
+set encoding=utf-8
+
+" Search case insensitive...
+set ignorecase
+" ... but not when search pattern contains upper case characters
+set smartcase
+
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" never do this again --> :set paste <ctrl-v> :set no paste
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
