@@ -3,7 +3,8 @@ ZSH_THEME="ys"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
-export GOPATH=$HOME/workspace
+export WORKSPACE=$HOME/workspace
+export GOPATH=$WORKSPACE
 export GOBIN=$GOPATH/bin
 export GOROOT=/usr/local/go
 export EDITOR='vim'

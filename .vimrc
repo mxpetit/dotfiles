@@ -9,6 +9,8 @@ call plug#begin('$HOME/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Initialize plugin system
 call plug#end()
@@ -63,3 +65,7 @@ nnoremap N Nzzzv
 " never do this again --> :set paste <ctrl-v> :set no paste
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
+
+let g:airline_powerline_fonts=1
+set t_Co=256
+let g:airline_theme='wombat'
