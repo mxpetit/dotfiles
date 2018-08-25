@@ -36,3 +36,13 @@ hosts() {
         host $i
     done
 }
+
+# ls as a tree. Automatically exclude vendor and .git directories
+tre() {
+    tree -R -aI "vendor|.git" $1
+}
+
+# shortcut for "git diff"
+gdif() {
+    git diff "$@"
+}

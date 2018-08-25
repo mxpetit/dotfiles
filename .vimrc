@@ -7,24 +7,12 @@ endif
 " Plugins directory
 call plug#begin('$HOME/.vim/plugged')
 
-Plug 'scrooloose/nerdtree'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Initialize plugin system
 call plug#end()
-
-" Loads NERDTree automatically 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" Automatically load NERDTree on new tabs
-autocmd BufWinEnter * NERDTreeMirror
-
-" Show dotfiles
-let NERDTreeShowHidden=1
-let NERDTreeIgnore = ['\.swp$']
 
 filetype plugin indent on
 " show existing tab with 4 spaces width
@@ -36,9 +24,6 @@ set expandtab
 
 " Show line number by default
 set number
-
-" Change to current file's directory
-set autochdir
 
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
@@ -58,14 +43,24 @@ set ignorecase
 set smartcase
 
 " Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in.
+" Search will center on the line it's found in.
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" never do this again --> :set paste <ctrl-v> :set no paste
+" Never do this again --> :set paste <ctrl-v> :set no paste
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
 
 let g:airline_powerline_fonts=1
 set t_Co=256
-let g:airline_theme='wombat'
+let g:airline_theme='term'
+
+" Always center the current line
+nnoremap j jzz
+nnoremap k kzz
+
+" Smart move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
