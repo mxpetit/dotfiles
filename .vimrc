@@ -10,6 +10,7 @@ call plug#begin('$HOME/.vim/plugged')
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'takac/vim-hardtime'
 
 " Initialize plugin system
 call plug#end()
@@ -58,6 +59,11 @@ let g:airline_theme='term'
 " Always center the current line
 nnoremap j jzz
 nnoremap k kzz
+nnoremap L Lzz
+nnoremap H Hzz
+nnoremap G Gzz
+nnoremap ( (zz
+nnoremap ) )zz
 
 " Smart move between windows
 map <C-j> <C-W>j

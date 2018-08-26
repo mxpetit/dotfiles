@@ -1,4 +1,6 @@
-.PHONY: all dotfiles
+.PHONY: all dotfiles vim
+
+LN_CMD=ln -sfn
 
 all: link
 
@@ -7,3 +9,6 @@ link:
         f=$$(basename $$file); \
         ln -sfn $$file $(HOME)/$$f; \
     done; \
+
+vim:
+	$(LN_CMD) $(PWD)/.vimrc $(HOME)/.vimrc
