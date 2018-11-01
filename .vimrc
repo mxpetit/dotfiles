@@ -44,7 +44,7 @@ set ignorecase
 set smartcase
 
 " Search mappings: These will make it so that going to the next one in a
-" Search will center on the line it's found in.
+" search will center on the line it's found in.
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
@@ -55,15 +55,6 @@ let &t_EI .= "\<Esc>[?2004l"
 let g:airline_powerline_fonts=1
 set t_Co=256
 let g:airline_theme='term'
-
-" Always center the current line
-nnoremap j jzz
-nnoremap k kzz
-nnoremap L Lzz
-nnoremap H Hzz
-nnoremap G Gzz
-nnoremap ( (zz
-nnoremap ) )zz
 
 " Smart move between windows
 map <C-j> <C-W>j
