@@ -21,7 +21,6 @@ set tabstop=4
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
-
 " Show line number by default
 set number
 
@@ -41,11 +40,8 @@ set encoding=utf-8
 set ignorecase
 " ... but not when search pattern contains upper case characters
 set smartcase
-
-" Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in.
-nnoremap n nzzzv
-nnoremap N Nzzzv
+" Highlight search results
+set hlsearch
 
 " Never do this again --> :set paste <ctrl-v> :set no paste
 let &t_SI .= "\<Esc>[?2004h"
@@ -55,12 +51,22 @@ let g:airline_powerline_fonts=1
 set t_Co=256
 let g:airline_theme='term'
 
+" mappings
+
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
 " Smart move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+noremap <C-j> <C-W>j
+noremap <C-k> <C-W>k
+noremap <C-h> <C-W>h
+noremap <C-l> <C-W>l
 
 " Always use j / k, even on long lines
 nnoremap j gj
 nnoremap k gk
+
+" Center after going to the end of the file
+noremap G Gzz

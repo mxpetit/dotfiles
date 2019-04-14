@@ -13,7 +13,7 @@ man() {
         man "$@"
 }
 
-# ls as a tree. Automatically exclude vendor and .git directories
-tre() {
-    tree -R -aI "vendor|.git|.github|node_modules" $1
+# Create a dir and cd into it
+mkcd() {
+    mkdir -p "$1" && cd "$1"
 }
