@@ -10,7 +10,6 @@ call plug#begin('$HOME/.vim/plugged')
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'takac/vim-hardtime'
 
 " Initialize plugin system
 call plug#end()
@@ -61,3 +60,7 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" Always use j / k, even on long lines
+nnoremap j gj
+nnoremap k gk

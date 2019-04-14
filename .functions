@@ -13,36 +13,7 @@ man() {
         man "$@"
 }
 
-# Removes all exited containers
-drm() {
-    docker rm $(docker ps -aq -f status=exited)
-}
-
-# Removes all untagged images
-drmi() {
-    docker rmi $(docker images --filter "dangling=true" -q)
-}
-
-# Scans <nmap_IP_pattern> and display hostname.
-# example: hosts '192.168.1.*'
-hosts() {
-    if [ $# -eq 0 ]
-    then
-        echo "Usage: hosts <nmap_IP_pattern>"
-        return 1
-    fi
-
-    for i in  $(nmap -n -sn $1 -oG - | awk '/Up$/{print $2}'); do
-        host $i
-    done
-}
-
 # ls as a tree. Automatically exclude vendor and .git directories
 tre() {
-    tree -R -aI "vendor|.git|.github" $1
-}
-
-# shortcut for "git diff"
-gdif() {
-    git diff "$@"
+    tree -R -aI "vendor|.git|.github|node_modules" $1
 }
