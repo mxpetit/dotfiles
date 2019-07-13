@@ -1,5 +1,4 @@
 # git aliases
-
 alias gdf='git diff --find-renames'
 alias gs='git status'
 

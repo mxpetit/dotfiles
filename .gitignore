@@ -1,1 +1,2 @@
-*.swp
+# Exclude customs aliases
+.custom

@@ -68,11 +68,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# Load aliases
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -84,26 +79,12 @@ if ! shopt -oq posix; then
     fi
 fi
 
-# Path and env variables
-export GOWORKSPACE=$HOME/workspace
-export GOPATH=$GOWORKSPACE
-export GOBIN=$GOPATH/bin
-export GOROOT=/usr/local/go
-export EDITOR='vim'
-export PATH=$PATH:$GOBIN
-export PATH=$PATH:$GOROOT/bin
-export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:/bin
-export PATH=$PATH:/sbin
-export PATH=$PATH:/snap/bin
-export PATH=$PATH:/usr/bin
-export PATH=$PATH:/usr/games
-export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:/usr/local/games
-export PATH=$PATH:/usr/local/sbin
-export PATH=$PATH:/usr/sbin
+# Load dotfiles
+for file in ~/.{bash_aliases,functions,path,exports,custom}; do
+    if [[ -r "$file" ]] && [[ -f "$file" ]]; then
+        # shellcheck source=/dev/null
+        source "$file"
+    fi
+done
 
-# Load fuctions
-if [ -f $HOME/.functions ]; then
-    . $HOME/.functions
-fi
+unset file
