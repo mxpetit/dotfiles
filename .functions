@@ -17,3 +17,7 @@ man() {
 mkcd() {
     mkdir -p "$1" && cd "$1"
 }
+
+lj() {
+    jq -C '.' $1 | less -r
+}

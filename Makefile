@@ -1,14 +1,12 @@
-.PHONY: all dotfiles vim
+.PHONY: all link nvim
 
-LN_CMD=ln -sfn
-
-all: link
+all: link nvim
 
 link:
-	for file in $(shell find $(CURDIR) -name ".*" -not -name ".git"); do \
+	for file in $(shell find $(CURDIR) -name ".*" -not -name ".git*"); do \
         f=$$(basename $$file); \
         ln -sfn $$file $(HOME)/$$f; \
     done; \
 
-vim:
-	$(LN_CMD) $(PWD)/.vimrc $(HOME)/.vimrc
+nvim:
+	ln -sfn $(PWD)/nvim/init.vim $(HOME)/.config/nvim/init.vim

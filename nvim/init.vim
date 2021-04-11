@@ -1,20 +1,17 @@
-if empty(glob('~/.vim/autoload/plug.vim'))
-	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter *
+      \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+      \|   PlugInstall --sync | q
+      \| endif
 endif
 
-" Plugins directory
-call plug#begin('$HOME/.vim/plugged')
-
+" Initialize plugins
+call plug#begin()
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" Initialize plugin system
 call plug#end()
 
-filetype plugin indent on
 " show existing tab with 4 spaces width
 set tabstop=4
 " when indenting with '>', use 4 spaces width
@@ -23,13 +20,6 @@ set shiftwidth=4
 set expandtab
 " Show line number by default
 set number
-
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
-set completeopt=longest,menuone
-
-" Automatically reread changed files without asking
-set autoread
 
 set noswapfile
 set nobackup
@@ -47,10 +37,6 @@ set hlsearch
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
 
-let g:airline_powerline_fonts=1
-set t_Co=256
-let g:airline_theme='term'
-
 " Smart move between windows
 noremap <C-j> <C-W>j
 noremap <C-k> <C-W>k
@@ -60,3 +46,8 @@ noremap <C-l> <C-W>l
 " Always use j / k, even on long lines
 nnoremap j gj
 nnoremap k gk
+
+" Keep block cursor
+set guicursor=
+
+colorscheme pablo
