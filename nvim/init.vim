@@ -50,4 +50,4 @@ nnoremap k gk
 " Keep block cursor
 set guicursor=
 
-colorscheme pablo
+colorscheme peachpuff
